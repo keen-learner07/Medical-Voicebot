@@ -1,0 +1,16 @@
+[project]
+name = "medical-voicebot"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "gradio>=5.49.1",
+    "groq>=0.32.0",
+    "gtts>=2.5.4",
+    "openai>=2.3.0",
+    "pyaudio>=0.2.14",
+    "pydub>=0.25.1",
+    "pygame>=2.6.1",
+    "speechrecognition>=3.14.3",
+]
