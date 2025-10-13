@@ -1,38 +1,31 @@
-# Step 1: Setup audio recorder (ffmpeg & portaudio)
+# Step 1: Setup audio recorder using sounddevice
 import logging
-import speech_recognition as sr
+import sounddevice as sd
 from pydub import AudioSegment
-from io import BytesIO
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
 
-def record_audio(file_path, timeout=20, phrase_time_limit=None):
-    recognizer = sr.Recognizer()
-
+def record_audio(file_path, duration=5, fs=44100):
     try:
-        with sr.Microphone() as source:
-            logging.info("Adjusting for ambient noice...")
-            recognizer.adjust_for_ambient_noise(source, duration=1)
-            logging.info("Start speaking now...")
+        logging.info("Start speaking now...")
+        audio = sd.rec(int(duration * fs), samplerate=fs, channels=1, dtype="int16")
+        sd.wait()
+        logging.info("Recording complete...")
 
-            # Record the audio
-            audio_data = recognizer.listen(
-                source, timeout=timeout, phrase_time_limit=phrase_time_limit
-            )
-            logging.info("Recording complete...")
-
-            # Convert the recorded audio to an MP3 file
-            wav_data = audio_data.get_wav_data()
-            audio_segment = AudioSegment.from_wav(BytesIO(wav_data))
-            audio_segment.export(file_path, format="mp3", bitrate="128k")
-
-            logging.info(f"Audio saved to {file_path}")
+        audio_segment = AudioSegment(
+            audio.tobytes(),
+            frame_rate=fs,
+            sample_width=audio.dtype.itemsize,
+            channels=1,
+        )
+        audio_segment.export(file_path, format="mp3", bitrate="128k")
+        logging.info(f"Audio saved to {file_path}")
 
     except Exception as e:
-        logging.error(f"An error occured: {e}")
+        logging.error(f"An error occurred: {e}")
 
 
 # audio_filepath = "patient_voice_test.mp3"
