@@ -51,4 +51,4 @@ iface = gr.Interface(
     title="AI Doctor with Vision and Voice",
 )
 
-iface.launch(debug=True, share=False, inbrowser=True)
+iface.launch(debug=True, inbrowser=True)
