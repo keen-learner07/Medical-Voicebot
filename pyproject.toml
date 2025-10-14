@@ -10,7 +10,6 @@ dependencies = [
     "gtts>=2.5.4",
     "openai>=2.3.0",
     "pydub>=0.25.1",
-    "pygame>=2.6.1",
     "python-dotenv>=1.1.1",
     "sounddevice>=0.5.2",
 ]
