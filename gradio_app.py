@@ -31,9 +31,10 @@ def process_inputs(audio_filepath, image_filepath):
     else:
         doctor_response = "No image provided to analyse"
 
-    voice_of_the_doctor = text_to_speech_with_gtts(doctor_response, "final.mp3")
+    mp3_path = "final.mp3"
+    text_to_speech_with_gtts(doctor_response, mp3_path)
 
-    return speech_to_text_output, doctor_response, voice_of_the_doctor
+    return speech_to_text_output, doctor_response, mp3_path
 
 
 # Create the interface
@@ -46,7 +47,7 @@ iface = gr.Interface(
     outputs=[
         gr.Textbox(label="Speech to Text"),
         gr.Textbox(label="AI Doctor's Response", lines=10, interactive=False),
-        gr.Audio("filepath"),
+        gr.Audio(type="filepath", label="AI Doctor's Voice"),
     ],
     title="AI Doctor with Vision and Voice",
 )
