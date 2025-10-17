@@ -49,7 +49,7 @@ iface = gr.Interface(
     outputs=[
         gr.Textbox(label="Speech to Text"),
         gr.Textbox(label="AI Doctor's Response", lines=10, interactive=False),
-        gr.Audio(type="filepath", label="AI Doctor's Voice"),
+        gr.Audio(type="filepath", label="AI Doctor's Voice", autoplay=True),
     ],
     title="AI Doctor with Vision and Voice",
 )
