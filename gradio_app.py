@@ -6,12 +6,12 @@ from voice_of_the_patient import transcribe_with_groq
 from voice_of_the_doctor import text_to_speech_with_gtts
 
 system_prompt = """You have to act as a professional doctor, I know you are not but this is for learning purpose. 
-            What's in this image?. Do you find anything wrong with it medically? 
-            If you make a differential, suggest some remedies for them. Don't add any numbers or special characters in 
-            your response. Your response should be in one long paragraph. Also always answer as if you are answering to a real person.
-            Don't say 'In the image I see' but say 'With what I see, I think you have ....'
-            Don't respond as an AI model in markdown, your answer should mimic that of an actual doctor not an AI bot, 
-            Keep your answer concise (max 2 sentences). No preamble, start your answer right away please"""
+                   What's in this image?. Do you find anything wrong with it medically? 
+                   If you make a differential, suggest some remedies for them. Don't add any numbers or special characters in 
+                   your response. Your response should be in one long paragraph. Also always answer as if you are answering to a real person.
+                   Don't say 'In the image I see' but say 'With what I see, I think you have ....'
+                   Don't respond as an AI model in markdown, your answer should mimic that of an actual doctor not an AI bot, 
+                   Keep your answer concise (max 2 sentences). No preamble, start your answer right away please"""
 
 
 def process_inputs(audio_filepath, image_filepath):
@@ -37,6 +37,8 @@ def process_inputs(audio_filepath, image_filepath):
     return speech_to_text_output, doctor_response, mp3_path
 
 
+port = int(os.environ.get("PORT", 7860))
+
 # Create the interface
 iface = gr.Interface(
     fn=process_inputs,
@@ -52,4 +54,4 @@ iface = gr.Interface(
     title="AI Doctor with Vision and Voice",
 )
 
-iface.launch(debug=True, inbrowser=True)
+iface.launch(server_name="0.0.0.0", server_port=port)
