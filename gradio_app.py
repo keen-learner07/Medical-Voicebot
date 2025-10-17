@@ -47,7 +47,7 @@ iface = gr.Interface(
         gr.Image(type="filepath"),
     ],
     outputs=[
-        gr.Textbox(label="Speech to Text"),
+        gr.Textbox(label="Your question", lines=2),
         gr.Textbox(label="AI Doctor's Response", lines=10, interactive=False),
         gr.Audio(type="filepath", label="AI Doctor's Voice", autoplay=True),
     ],
@@ -55,3 +55,4 @@ iface = gr.Interface(
 )
 
 iface.launch(server_name="0.0.0.0", server_port=port)
+# iface.launch(share=False, inbrowser=True)
