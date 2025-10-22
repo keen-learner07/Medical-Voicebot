@@ -6,11 +6,11 @@ Medical VoiceBot is an AI-powered multimodal assistant that listens to patients,
 
    Voice Input: Patients can ask questions by speaking.
 
-   AI Diagnosis: Uses Groq’s multimodal Llama model to analyze speech and optional medical images.
+   AI Diagnosis: Uses Groq’s multimodal Llama model to analyze speech and medical images.
 
    Image Analysis: Evaluates uploaded photos for visible conditions.
 
-   Doctor’s Voice: Responds naturally using gTTS (Google Text-to-Speech).
+   Doctor’s Voice: Responds using gTTS (Google Text-to-Speech).
 
 🧩 Tech Stack
 
