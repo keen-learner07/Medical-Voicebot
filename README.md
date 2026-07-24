@@ -1,4 +1,4 @@
-🩺 Medical VoiceBot — AI Doctor with Vision & Voice
+🩺 Medical VoiceBot - AI Doctor with Vision & Voice
 
 Medical VoiceBot is an AI-powered multimodal assistant that listens to patients, analyzes images, and responds with a human-like doctor’s voice. It combines speech recognition, image understanding, and text-to-speech to create an interactive, conversational medical experience.
 
@@ -14,13 +14,13 @@ Medical VoiceBot is an AI-powered multimodal assistant that listens to patients,
 
 🧩 Tech Stack
 
-   Groq API — Multimodal LLM & Whisper speech-to-text
+   Groq API - Multimodal LLM & Whisper speech-to-text
   
-   Gradio — Intuitive web interface
+   Gradio - Intuitive web interface
     
-   gTTS + pydub — Text-to-speech synthesis
+   gTTS + pydub - Text-to-speech synthesis
     
-   Python — Core logic and orchestration
+   Python - Core logic and orchestration
 
 🧠 How It Works
 
