@@ -11,7 +11,6 @@ def text_to_speech_with_gtts_old(input_text, output_filepath):
 
 
 input_text = "How's the weather today?"
-# text_to_speech_with_gtts_old(input_text=input_text, output_filepath="gtts_testing.mp3")
 
 
 # Step 2: Create a function to autoplay the voice of the doctor

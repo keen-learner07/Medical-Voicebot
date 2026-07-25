@@ -20,17 +20,24 @@ def encode_image(image_path):
 from groq import Groq
 
 query = "Is there something wrong with my face?"
-model = "meta-llama/llama-4-scout-17b-16e-instruct"
+model = "qwen/qwen3.6-27b"
 
 
-def analyse_image_with_query(query, model, encoded_image):
+def analyse_image_with_query(prompt, query, model, encoded_image):
     client = Groq()
 
     messages = [
         {
+            "role": "system",
+            "content": prompt,
+        },
+        {
             "role": "user",
             "content": [
-                {"type": "text", "text": query},
+                {
+                    "type": "text",
+                    "text": query,
+                },
                 {
                     "type": "image_url",
                     "image_url": {
@@ -38,9 +45,17 @@ def analyse_image_with_query(query, model, encoded_image):
                     },
                 },
             ],
-        }
+        },
     ]
 
-    chat_completion = client.chat.completions.create(messages=messages, model=model)
+    chat_completion = client.chat.completions.create(
+        model=model,
+        messages=messages,
+        temperature=0.2,
+        max_completion_tokens=120,
+        reasoning_effort="none",
+    )
+
+    # print(chat_completion)
 
     return chat_completion.choices[0].message.content
