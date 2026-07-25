@@ -63,7 +63,7 @@ iface = gr.Interface(
             sources=["microphone"],
             type="filepath",
             label="Record your question",
-            autoplay=False,
+            autoplay=True,
         ),
         gr.Image(type="filepath"),
     ],
