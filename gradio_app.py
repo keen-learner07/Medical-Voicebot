@@ -63,14 +63,14 @@ iface = gr.Interface(
             sources=["microphone"],
             type="filepath",
             label="Record your question",
-            autoplay=True,
+            autoplay=False,
         ),
         gr.Image(type="filepath"),
     ],
     outputs=[
         gr.Textbox(label="Your question", lines=2),
         gr.Textbox(label="AI Doctor's Response", lines=10, interactive=False),
-        gr.Audio(type="filepath", label="AI Doctor's Voice", autoplay=False),
+        gr.Audio(type="filepath", label="AI Doctor's Voice", autoplay=True),
     ],
     title="AI Doctor with Vision and Voice",
 )
