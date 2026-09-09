@@ -7,11 +7,11 @@ from voice_of_the_doctor import text_to_speech_with_gtts
 
 system_prompt = """Act as an experienced medical doctor.
 
-Analyze the uploaded image together with the patient's question.
+Analyze the patient's question and provide a helpful, medically appropriate response. If an image is provided, analyze the image together with the patient's question. If no image is provided, answer based only on the patient's question.
 
 Refer to "the image" instead of "the images".
 
-State the most likely condition using phrases like "This appears to be..." or "This looks most consistent with...".
+When an image is provided, state the most likely condition using phrases like "This appears to be..." or "This looks most consistent with...".
 
 Briefly mention possible causes and one or two home care recommendations.
 
@@ -32,16 +32,19 @@ def process_inputs(audio_filepath, image_filepath):
         GROQ_API_KEY=os.environ.get("GROQ_API_KEY"),
     )
 
-    # Handle the image input
+    # Handle optional image input
     if image_filepath:
-        doctor_response = analyse_image_with_query(
-            prompt=system_prompt,
-            query=speech_to_text_output,
-            model="qwen/qwen3.6-27b",
-            encoded_image=encode_image(image_filepath),
-        )
+        encoded_image = encode_image(image_filepath)
+
     else:
-        doctor_response = "No image provided to analyse"
+        encoded_image = None
+
+    doctor_response = analyse_image_with_query(
+        prompt=system_prompt,
+        query=speech_to_text_output,
+        model="qwen/qwen3.6-27b",
+        encoded_image=encoded_image,
+    )
 
     # print("\n----- RAW MODEL RESPONSE -----")
     # print(doctor_response)

@@ -32,24 +32,24 @@ def text_to_speech_with_gtts(input_text, output_filepath="doctor_voice.wav"):
     sound.export(output_filepath, format="wav")
     os.remove(temp_mp3)
 
-    os_name = platform.system()
-    try:
-        if os_name == "Darwin":  # macOS
-            subprocess.run(["afplay", output_filepath])
-        elif os_name == "Windows":  # Windows
-            subprocess.run(
-                [
-                    "powershell",
-                    "-c",
-                    f'(New-Object Media.SoundPlayer "{output_filepath}").PlaySync();',
-                ]
-            )
-        elif os_name == "Linux":  # Linux
-            subprocess.run(["aplay", output_filepath])
-        else:
-            raise OSError("Unsupported operating system")
-    except Exception as e:
-        print(f"An error occurred while trying to play the audio: {e}")
+    # os_name = platform.system()
+    # try:
+    #     if os_name == "Darwin":  # macOS
+    #         subprocess.run(["afplay", output_filepath])
+    #     elif os_name == "Windows":  # Windows
+    #         subprocess.run(
+    #             [
+    #                 "powershell",
+    #                 "-c",
+    #                 f'(New-Object Media.SoundPlayer "{output_filepath}").PlaySync();',
+    #             ]
+    #         )
+    #     elif os_name == "Linux":  # Linux
+    #         subprocess.run(["aplay", output_filepath])
+    #     else:
+    #         raise OSError("Unsupported operating system")
+    # except Exception as e:
+    #     print(f"An error occurred while trying to play the audio: {e}")
 
 
 # input_text = "You must increase your water intake"

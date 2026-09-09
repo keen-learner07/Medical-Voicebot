@@ -26,26 +26,23 @@ model = "qwen/qwen3.6-27b"
 def analyse_image_with_query(prompt, query, model, encoded_image):
     client = Groq()
 
+    if encoded_image:
+        user_content = [
+            {"type": "text", "text": query},
+            {
+                "type": "image_url",
+                "image_url": {"url": f"data:image/jpeg;base64,{encoded_image}"},
+            },
+        ]
+    else:
+        user_content = query
+
     messages = [
         {
             "role": "system",
             "content": prompt,
         },
-        {
-            "role": "user",
-            "content": [
-                {
-                    "type": "text",
-                    "text": query,
-                },
-                {
-                    "type": "image_url",
-                    "image_url": {
-                        "url": f"data:image/jpeg;base64,{encoded_image}",
-                    },
-                },
-            ],
-        },
+        {"role": "user", "content": user_content},
     ]
 
     chat_completion = client.chat.completions.create(
