@@ -42,7 +42,7 @@ def process_inputs(audio_filepath, image_filepath):
     doctor_response = analyse_image_with_query(
         prompt=system_prompt,
         query=speech_to_text_output,
-        model="qwen/qwen3.6-27b",
+        model="qwen/qwen3.8-27b",
         encoded_image=encoded_image,
     )
 

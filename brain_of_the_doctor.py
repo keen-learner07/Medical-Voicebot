@@ -20,7 +20,7 @@ def encode_image(image_path):
 from groq import Groq
 
 query = "Is there something wrong with my face?"
-model = "qwen/qwen3.6-27b"
+model = "qwen/qwen3.8-27b"
 
 
 def analyse_image_with_query(prompt, query, model, encoded_image):

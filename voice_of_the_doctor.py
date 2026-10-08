@@ -14,8 +14,6 @@ input_text = "How's the weather today?"
 
 
 # Step 2: Create a function to autoplay the voice of the doctor
-import subprocess
-import platform
 import os
 
 
